@@ -37,14 +37,14 @@ logger = logging.getLogger(__name__)
 APP_MAPPINGS = {
     "notepad": "notepad",
     "calculator": "calc",
-    "chrome": r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    "vlc": r"C:\Program Files\VideoLAN\VLC\vlc.exe",
+    "chrome": r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",    
+    #"vlc": r"C:\Program Files\VideoLAN\VLC\vlc.exe",
     "command prompt": "cmd",
     "control panel": "control",
     "settings": "start ms-settings:",
     "paint": "mspaint",
-    "vs code": r"C:\Users\Vikas\AppData\Local\Programs\Microsoft VS Code\Code.exe",
-    "postman": r"C:\Users\Vikas\AppData\Local\Postman\Postman.exe",
+    "vs code": r"C:\Users\VIVEK\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+    #"postman": r"C:\Users\Vikas\AppData\Local\Postman\Postman.exe",
     "whatsapp": r"shell:AppsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
     # add or override with your paths
 }

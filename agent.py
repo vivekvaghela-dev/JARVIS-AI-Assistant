@@ -13,16 +13,15 @@ from livekit.plugins import (
     google,
     noise_cancellation,
 )
-from Jarvis_prompts import behavior_prompts, Reply_prompts
-from Jarvis_screenshot import screenshot_tool
-from Jarvis_google_search import google_search, get_current_datetime
+from jarvis_prompts import behavior_prompts, Reply_prompts
+from jarvis_screenshot import screenshot_tool
+from jarvis_google_search import google_search, get_current_datetime, youtube_search, google_open_search
 from memory.jarvis_memory import load_memory, save_memory, get_recent_conversations, add_memory_entry
 from memory_interceptor import MEMORY_KEYWORDS
 from jarvis_get_whether import get_weather
-from Jarvis_window_CTRL import open, close, folder_file
-from Jarvis_file_open import Play_file
-from keyboard_mouse_CTRL import move_cursor_tool, mouse_click_tool, scroll_cursor_tool, type_text_tool, press_key_tool, swipe_gesture_tool, press_hotkey_tool, control_volume_too
-
+from jarvis_window_CTRL import open, close, folder_file
+from jarvis_file_open import Play_file
+from keyboard_mouse_CTRL import move_cursor_tool, mouse_click_tool, scroll_cursor_tool, type_text_tool, press_key_tool, swipe_gesture_tool, press_hotkey_tool, control_volume_tool
 load_dotenv()
 if not os.getenv("GOOGLE_API_KEY"):
     base_dir = os.path.dirname(__file__)
@@ -65,9 +64,13 @@ class Assistant(Agent):
                             type_text_tool, 
                             press_key_tool, 
                             press_hotkey_tool, 
-                            control_volume_tool, #
+                            control_volume_tool, 
                             swipe_gesture_tool,
-                            
+                            google_search,
+                            get_current_datetime,
+                            youtube_search,
+                            google_open_search,
+                            get_weather,
                             
                          ]
                          )
@@ -79,8 +82,8 @@ async def entrypoint(ctx: agents.JobContext):
     retry_count = 0
     base_wait_time = 3  # Increased from 2
     
-    auto_thinker = JarvisAutoThinking()
-    print("🧠 JarvisAutoThinking background assistant started")
+    #auto_thinker = jarvisAutoThinking()
+    #print("🧠 JarvisAutoThinking background assistant started")
     
     while retry_count < max_retries:
         try:

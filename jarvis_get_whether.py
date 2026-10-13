@@ -29,7 +29,7 @@ async def get_weather(city: str = "") -> str:
     
     API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-    if not api_key:
+    if not API_KEY:
         logger.error("OpenWeather API key missing है।")
         return "Environment variables में OpenWeather API key नहीं मिली।"
 
@@ -40,7 +40,7 @@ async def get_weather(city: str = "") -> str:
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "q": city,
-        "appid": api_key,
+        "appid": API_KEY,
         "units": "metric"
     }
 
@@ -61,9 +61,9 @@ async def get_weather(city: str = "") -> str:
                   f"- Condition: {weather}\n"
                   f"- Temperature: {temperature}°C\n"
                   f"- Humidity: {humidity}%\n"
-                  f"- Wind Speed: {wind_speed} m/s")
-                  f" - UV Index: {UV_INDEX}\n"
-
+                  f"- Wind Speed: {wind_speed} m/s"
+                  f" - UV Index: {UV_INDEX}\n")
+        
         logger.info(f"Weather result: \n{result}")
         return result
 

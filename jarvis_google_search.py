@@ -6,7 +6,8 @@ import logging
 from dotenv import load_dotenv
 from livekit.agents import function_tool
 from datetime import datetime
-
+import webbrowser #online serach mate
+import urllib.parse #@online serach mate
 # Load environment variable
 load_dotenv()
 
@@ -56,7 +57,7 @@ async def google_search(query: str) -> str:
         formatted += f"{i}. {title}\n{link}\n{snippet}\n\n"
         logger.info(f"{i}. {title}\n{link}\n{snippet}\n")
 
-    return formetted strip()
+    return formatted.strip()
 
 @function_tool
 async def get_current_datetime() -> str:
@@ -64,33 +65,32 @@ async def get_current_datetime() -> str:
 
 
 
+#online youtube,google search etc search krva mate jarvis khud krse user ni requiremtnts mujab
+import webbrowser
+import urllib.parse
 
+@function_tool
+async def youtube_search(query: str) -> str:
+    """YouTube par diye gaye query ko search karke browser mein kholta hai"""
+    try:
+        encoded_query = urllib.parse.quote(query)
+        url = f"https://www.youtube.com/results?search_query={encoded_query}"
+        webbrowser.open(url)
+        logger.info(f"YouTube search kiya gaya: {query}")
+        return f"YouTube par '{query}' search kar diya hai, browser mein khul gaya hai."
+    except Exception as e:
+        logger.error(f"YouTube search mein error: {e}")
+        return "YouTube search karte samay error aaya."
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@function_tool
+async def google_open_search(query: str) -> str:
+    """Google par diye gaye query ko search karke browser mein kholta hai"""
+    try:
+        encoded_query = urllib.parse.quote(query)
+        url = f"https://www.google.com/search?q={encoded_query}"
+        webbrowser.open(url)
+        logger.info(f"Google search kiya gaya: {query}")
+        return f"Google par '{query}' search kar diya hai, browser mein khul gaya hai."
+    except Exception as e:
+        logger.error(f"Google search mein error: {e}")
+        return "Google search karte samay error aaya."
