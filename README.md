@@ -105,8 +105,6 @@ Check the project's actual entry point before running this command.
 
 **Vivek Vaghela**
 
-GitHub: 
-
 ---
 
 *Built with Python and a passion for AI-powered automation.*
